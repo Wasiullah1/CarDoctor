@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "91358816031",
+    "project_id": "cardoctor-6a363",
+    "storage_bucket": "cardoctor-6a363.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91358816031:android:f970853dab3de44c9cf22a",
+        "android_client_info": {
+          "package_name": "com.example.cardoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91358816031-6v1ol81ti23jmc77qjdb0vi5j5hbp6a5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRAAwSxzw522Aa41lx20wNwXmDqw2eAGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91358816031-6v1ol81ti23jmc77qjdb0vi5j5hbp6a5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
