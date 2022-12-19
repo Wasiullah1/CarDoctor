@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AppUser {
+class MechanicUser {
   String? uid;
   String? email;
   String? name;
@@ -11,7 +11,7 @@ class AppUser {
   String? phone;
   String? city;
 
-  AppUser({
+  MechanicUser({
     this.uid,
     this.email,
     this.name,
@@ -24,8 +24,8 @@ class AppUser {
   });
 
   // receiving data from server
-  static AppUser fromMap(Map<String, dynamic> map) {
-    return AppUser(
+  static MechanicUser fromMap(Map<String, dynamic> map) {
+    return MechanicUser(
       uid: map['uid'],
       email: map['email'],
       name: map['name'],
@@ -39,17 +39,17 @@ class AppUser {
   }
 
   // sending data to our server
-  static Map<String, dynamic> toMap(AppUser userM) {
+  static Map<String, dynamic> toMap(MechanicUser userMechanic) {
     return {
-      'uid': userM.uid,
-      'email': userM.email,
-      'name': userM.name,
+      'uid': userMechanic.uid,
+      'email': userMechanic.email,
+      'name': userMechanic.name,
       'created_at': Timestamp.now(),
-      'image': userM.image,
-      'shopName': userM.catagory,
-      'role': userM.role,
-      'city': userM.city,
-      'phone': userM.phone,
+      'image': userMechanic.image,
+      'shopName': userMechanic.catagory,
+      'role': userMechanic.role,
+      'city': userMechanic.city,
+      'phone': userMechanic.phone,
     };
   }
 }

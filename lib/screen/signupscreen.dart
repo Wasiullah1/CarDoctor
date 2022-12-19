@@ -8,6 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../components/socialbuttons.dart';
+
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -65,21 +67,22 @@ class _SignupScreenState extends State<SignupScreen> {
                                 return null;
                             },
                             decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.person),
-                                hintText: 'Username',
-                                labelText: 'Username',
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                hintStyle: TextStyle(
-                                  color: AppColors.hintColor,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                labelStyle: TextStyle(
-                                    color: AppColors.hintColor,
-                                    fontWeight: FontWeight.normal)),
+                              prefixIcon: Icon(Icons.person),
+                              hintText: 'Username',
+                              labelText: 'Username',
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              // hintStyle: TextStyle(
+                              //   color: AppColors.hintColor,
+                              //   fontWeight: FontWeight.normal,
+                              // ),
+                              // labelStyle: TextStyle(
+                              //     color: AppColors.hintColor,
+                              //     fontWeight: FontWeight.normal)
+                            ),
                           ),
                           SizedBox(
                             height: 10,
@@ -136,13 +139,13 @@ class _SignupScreenState extends State<SignupScreen> {
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'required';
+                                return 'Provide Contact in +92 format required';
                               } else
                                 return null;
                             },
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.phone),
-                              hintText: 'Contat',
+                              hintText: '+923333333333',
                               labelText: 'Contact',
                               filled: true,
                               fillColor: Colors.white,
@@ -176,13 +179,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 builder: (context) => MechanicSignup()));
                       }),
                 ),
-                Text(
-                  "Signup with Google",
-                  style: TextStyle(
-                    color: AppColors.primaryTextTextColor,
-                    fontSize: 20,
-                  ),
-                ),
+                SizedBox(height: 10),
+                Text('Or create account using social media',
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Theme.of(context).colorScheme.onBackground)),
+                SizedBox(height: 10),
+                const SocialIconButton(),
               ]),
         ));
   }

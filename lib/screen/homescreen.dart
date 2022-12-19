@@ -19,11 +19,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String? name;
   String? email;
+  String? name1;
+  String? email1;
   @override
   void initState() {
     super.initState();
     name = CurrentAppUser.currentUserData.name ?? "";
     email = CurrentAppUser.currentUserData.email ?? "";
+    name1 = CurrentMechanicUser.currentUserMechanicData.name ?? "";
+    email1 = CurrentMechanicUser.currentUserMechanicData.email ?? "";
     setState(() {});
   }
 

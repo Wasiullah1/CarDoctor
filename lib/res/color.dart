@@ -25,7 +25,7 @@ class AppColors {
 
   static const Color focusUnderLineColor = Color(0xff373737);
   static const Color dividedColor = Color(0xff373737);
-  static const Color grayColor = Color(0xffdfdfe1);
+  static const Color grayColor = Color.fromARGB(255, 66, 66, 66);
 
   static const Color dialogAlertBackgroundColor = Color(0xff262938);
   static const Color lightGrayColor = Color(0xffA5A5A5);

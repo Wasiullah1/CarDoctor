@@ -24,6 +24,13 @@ class _SplashScreenState extends State<SplashScreen> {
           Duration(seconds: 3),
           () => Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomeScreen())));
+    } else if (user != null) {
+      CurrentMechanicUser.currentUserMechanicData
+          .getCurrentMechanicData(user.uid);
+      Timer(
+          Duration(seconds: 3),
+          () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomeScreen())));
     } else {
       Timer(
           Duration(seconds: 3),
@@ -31,6 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
               context, MaterialPageRoute(builder: (context) => LoginScreen())));
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

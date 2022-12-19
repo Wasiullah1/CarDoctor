@@ -1,3 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
 class Mechanic {
   final String id;
   final String name;
