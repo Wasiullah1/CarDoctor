@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "91358816031",
-    "project_id": "cardoctor-6a363",
-    "storage_bucket": "cardoctor-6a363.appspot.com"
+    "project_number": "425532764062",
+    "project_id": "cardoctor-e8f7b",
+    "storage_bucket": "cardoctor-e8f7b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:91358816031:android:f970853dab3de44c9cf22a",
+        "mobilesdk_app_id": "1:425532764062:android:c87b1a9156dba6b92bf08f",
         "android_client_info": {
-          "package_name": "com.example.cardoctor"
+          "package_name": "com.cars.cardoctor"
         }
       },
       "oauth_client": [
         {
-          "client_id": "91358816031-6v1ol81ti23jmc77qjdb0vi5j5hbp6a5.apps.googleusercontent.com",
+          "client_id": "425532764062-nqsru2n50tc4p6kbudvn28v3unpcufma.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBRAAwSxzw522Aa41lx20wNwXmDqw2eAGM"
+          "current_key": "AIzaSyBZdxsVviojo1fkLAFUrCUnUKzhmizCZSU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "91358816031-6v1ol81ti23jmc77qjdb0vi5j5hbp6a5.apps.googleusercontent.com",
+              "client_id": "425532764062-nqsru2n50tc4p6kbudvn28v3unpcufma.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
