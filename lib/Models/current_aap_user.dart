@@ -10,15 +10,15 @@ class CurrentAppUser extends AppUser with ChangeNotifier {
   static CurrentAppUser get currentUserData => _singleton;
 
   Future<bool> getCurrentUserData(String userId) async {
+    // Automatically update data when edited on server
+
     try {
-      await FirebaseFirestore.instance
+      FirebaseFirestore.instance
           .collection('users')
           .doc(userId)
-          .get()
-          .then((event) {
-        print("HHere we got ::::: >>>>>>>");
+          .snapshots()
+          .listen((event) {
         Map<String, dynamic>? data = event.data();
-        print("HHere we got ::::: Map :: >>>>>>>$data ");
         CurrentAppUser.currentUserData.uid = userId;
         CurrentAppUser.currentUserData.uid = data!['uid'] ?? '';
         CurrentAppUser.currentUserData.email = data['email'] ?? '';
@@ -46,29 +46,24 @@ class CurrentMechanicUser extends MechanicUser with ChangeNotifier {
 
   Future<bool> getCurrentMechanicData(String mechanicId) async {
     try {
-      await FirebaseFirestore.instance
+      FirebaseFirestore.instance
           .collection('mechanic')
           .doc(mechanicId)
-          .get()
-          .then((event1) {
-        print("HHere we got ::::: >>>>>>>");
-        Map<String, dynamic>? data1 = event1.data();
-        print("HHere we got ::::: Map :: >>>>>>>$data1 ");
+          .snapshots()
+          .listen((event) {
+        Map<String, dynamic>? data = event.data();
         CurrentMechanicUser.currentUserMechanicData.uid = mechanicId;
-        CurrentMechanicUser.currentUserMechanicData.uid = data1!['uid'] ?? '';
-        CurrentMechanicUser.currentUserMechanicData.email =
-            data1['email'] ?? '';
-        CurrentMechanicUser.currentUserMechanicData.name = data1['name'] ?? '';
+        CurrentMechanicUser.currentUserMechanicData.uid = data!['uid'] ?? '';
+        CurrentMechanicUser.currentUserMechanicData.email = data['email'] ?? '';
+        CurrentMechanicUser.currentUserMechanicData.name = data['name'] ?? '';
         CurrentMechanicUser.currentUserMechanicData.createdAt =
-            data1['created_at'] ?? '';
-        CurrentMechanicUser.currentUserMechanicData.image =
-            data1['image'] ?? '';
-        CurrentMechanicUser.currentUserMechanicData.role = data1['role'] ?? '';
+            data['created_at'] ?? '';
+        CurrentMechanicUser.currentUserMechanicData.image = data['image'] ?? '';
+        CurrentMechanicUser.currentUserMechanicData.role = data['role'] ?? '';
         CurrentMechanicUser.currentUserMechanicData.catagory =
-            data1['catagory'] ?? '';
-        CurrentMechanicUser.currentUserMechanicData.city = data1['city'];
-        CurrentMechanicUser.currentUserMechanicData.phone =
-            data1['phone'] ?? '';
+            data['catagory'] ?? '';
+        CurrentMechanicUser.currentUserMechanicData.city = data['city'];
+        CurrentMechanicUser.currentUserMechanicData.phone = data['phone'] ?? '';
         CurrentMechanicUser.currentUserMechanicData.notifyListeners();
       });
       return true;

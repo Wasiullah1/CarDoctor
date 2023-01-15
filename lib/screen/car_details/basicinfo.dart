@@ -1,6 +1,8 @@
+import 'package:cardoctor/Models/current_aap_user.dart';
 import 'package:cardoctor/components/button.dart';
 import 'package:cardoctor/res/color.dart';
 import 'package:cardoctor/screen/car_details/service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class BasicInfo extends StatefulWidget {
@@ -12,6 +14,8 @@ class BasicInfo extends StatefulWidget {
 
 class _BasicInfoState extends State<BasicInfo> {
   DateTime selectedDate = DateTime.now();
+  String rideType = '';
+  String makeModel = '';
 
   // Future<void> _selectDate(BuildContext context) async {
   //   final DateTime? picked = await showDatePicker(
@@ -53,7 +57,11 @@ class _BasicInfoState extends State<BasicInfo> {
                     child: new Text(value),
                   );
                 }).toList(),
-                onChanged: (_) {},
+                onChanged: (_) {
+                  setState(() {
+                    rideType = _!;
+                  });
+                },
               ),
               SizedBox(height: 30),
               DropdownButtonFormField<String>(
@@ -86,7 +94,11 @@ class _BasicInfoState extends State<BasicInfo> {
                     child: new Text(value),
                   );
                 }).toList(),
-                onChanged: (_) {},
+                onChanged: (_) {
+                  setState(() {
+                    makeModel = _!;
+                  });
+                },
               ),
               SizedBox(height: 30),
               DropdownButtonFormField<String>(
@@ -107,7 +119,11 @@ class _BasicInfoState extends State<BasicInfo> {
                     child: new Text(value),
                   );
                 }).toList(),
-                onChanged: (_) {},
+                onChanged: (_) {
+                  setState(() {
+                    makeModel = _!;
+                  });
+                },
               ),
               SizedBox(height: 30),
               DropdownButtonFormField<String>(
@@ -121,7 +137,11 @@ class _BasicInfoState extends State<BasicInfo> {
                     child: new Text(value),
                   );
                 }).toList(),
-                onChanged: (_) {},
+                onChanged: (_) {
+                  setState(() {
+                    rideType = _!;
+                  });
+                },
               ),
               SizedBox(height: 30),
               DropdownButtonFormField<String>(
@@ -135,16 +155,51 @@ class _BasicInfoState extends State<BasicInfo> {
                     child: new Text(value),
                   );
                 }).toList(),
-                onChanged: (_) {},
+                onChanged: (_) {
+                  setState(() {
+                    rideType = _!;
+                  });
+                },
               ),
               SizedBox(height: 30),
               RoundButton(
                   title: "Next",
-                  onPress: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ServiceCategory()));
+                  onPress: () async {
+                    final uid = CurrentAppUser.currentUserData.uid ??
+                        CurrentMechanicUser.currentUserMechanicData.uid;
+                    if (rideType == null ||
+                        rideType.isEmpty ||
+                        makeModel == null ||
+                        makeModel.isEmpty ||
+                        selectedDate == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Please fill all the fields")));
+                      return;
+                    } else if (uid == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Please login first")));
+                      return;
+                    } else {
+                      var docId =
+                          DateTime.now().millisecondsSinceEpoch.toString();
+                      var doc = await FirebaseFirestore.instance
+                          .collection('garage')
+                          .doc(uid)
+                          .collection('cars')
+                          .doc(docId)
+                          .set({
+                        'rideType': rideType,
+                        'makeModel': makeModel,
+                        'selectedDate': selectedDate,
+                      });
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ServiceCategory(
+                                    carId: docId,
+                                  )));
+                    }
                   })
             ],
           ),

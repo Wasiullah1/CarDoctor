@@ -1,15 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Mechanic {
   final String id;
-  final String name;
-  final String profession;
-  final String city;
-  final String image;
-  final String address;
-  final String contact;
+  final String? name;
+  final String? profession;
+  final String? city;
+  final String? image;
+  final String? address;
+  final String? contact;
 
   Mechanic(
       {required this.id,
@@ -19,6 +20,17 @@ class Mechanic {
       required this.image,
       required this.contact,
       required this.address});
+
+  static Mechanic fromMap(Map data) {
+    return Mechanic(
+        id: data['uid'],
+        name: data['name'],
+        profession: data['role'],
+        city: data['city'],
+        image: data['image'],
+        contact: data['phone'],
+        address: data['address'] ?? data['city']);
+  }
 
   static List<Mechanic> mechanicmodel() => [
         Mechanic(
