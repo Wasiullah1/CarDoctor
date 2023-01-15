@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AppUser {
   String? uid;
+  String? profileUrl;
   String? email;
   String? name;
   String? image;

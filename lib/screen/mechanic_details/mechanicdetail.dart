@@ -7,17 +7,18 @@ import '../../Models/mechanic.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class MechanicDetail extends StatefulWidget {
-  int id;
-  MechanicDetail({Key? key, required this.id}) : super(key: key);
+  Mechanic mechanic;
+  MechanicDetail({Key? key, required this.mechanic}) : super(key: key);
 
   @override
-  State<MechanicDetail> createState() => _MechanicDetailState(id);
+  State<MechanicDetail> createState() => _MechanicDetailState();
 }
 
 class _MechanicDetailState extends State<MechanicDetail> {
-  final mechanic = Mechanic.mechanicmodel();
-  int id;
-  _MechanicDetailState(this.id);
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void launchWhatsApp({
     required int phone,
@@ -93,7 +94,7 @@ class _MechanicDetailState extends State<MechanicDetail> {
                                 height: 160 / 2,
                               ),
                               Text(
-                                mechanic[id].name,
+                                widget.mechanic.name ?? 'Mechanic Name',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 34.0,
@@ -103,7 +104,8 @@ class _MechanicDetailState extends State<MechanicDetail> {
                                 height: 10,
                               ),
                               Text(
-                                mechanic[id].profession,
+                                widget.mechanic.profession ??
+                                    'Mechanic Profession',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 30.0,
@@ -120,7 +122,7 @@ class _MechanicDetailState extends State<MechanicDetail> {
                                     color: Colors.grey.shade400,
                                   ),
                                   Text(
-                                    mechanic[id].city,
+                                    widget.mechanic.city ?? 'Mechanic City',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16.0,
@@ -135,7 +137,7 @@ class _MechanicDetailState extends State<MechanicDetail> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 16),
                                 child: Text(
-                                  mechanic[id].address,
+                                  widget.mechanic.address ?? 'Mechanic Address',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -159,7 +161,8 @@ class _MechanicDetailState extends State<MechanicDetail> {
                                       ),
                                       SizedBox(width: 10),
                                       Text(
-                                        mechanic[id].contact,
+                                        widget.mechanic.contact ??
+                                            'Mechanic Contact',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 20.0,
@@ -189,8 +192,8 @@ class _MechanicDetailState extends State<MechanicDetail> {
                       padding: EdgeInsets.all(2.0),
                       child: Container(
                         child: ClipOval(
-                          child: Image.asset(
-                            mechanic[id].image,
+                          child: Image.network(
+                            widget.mechanic.image ?? 'Mechanic Image',
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -206,7 +209,7 @@ class _MechanicDetailState extends State<MechanicDetail> {
                 backgroundColor: AppColors.whatsapp,
                 onPressed: () {
                   launchWhatsApp(
-                      phone: int.parse("${mechanic[id].contact}"),
+                      phone: int.parse("${widget.mechanic.contact}"),
                       message: 'Hello');
                 },
                 child: const Icon(Icons.whatsapp)),
@@ -218,7 +221,7 @@ class _MechanicDetailState extends State<MechanicDetail> {
                 backgroundColor: AppColors.dial,
                 onPressed: () async {
                   FlutterPhoneDirectCaller.callNumber(
-                      "${mechanic[id].contact}");
+                      "${widget.mechanic.contact}");
                 },
                 child: const Icon(Icons.phone)),
           ),

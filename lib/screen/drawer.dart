@@ -42,7 +42,9 @@ class _MyDrawerState extends State<MyDrawer> {
   }
 
   _buildDrawer() {
-    final String image = "";
+    final String image = CurrentAppUser.currentUserData.image ??
+        CurrentMechanicUser.currentUserMechanicData.image ??
+        "https://firebasestorage.googleapis.com/v0/b/cardoctor-1f2c7.appspot.com/o/images%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b";
     return ClipPath(
       clipper: OvalRightBorderClipper(),
       child: Container(
@@ -77,7 +79,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     ])),
                 child: CircleAvatar(
                   radius: 40,
-                  backgroundImage: AssetImage(image),
+                  backgroundImage: NetworkImage(image),
                 ),
               ),
               SizedBox(height: 5.0),
@@ -102,9 +104,10 @@ class _MyDrawerState extends State<MyDrawer> {
               InkWell(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ProfileScreen()));
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfileScreen()))
+                        .then((value) => setState(() {}));
                   },
                   child: _buildRow(Icons.person_pin, "My profile")),
               _buildDivider(),
