@@ -47,7 +47,7 @@ class CurrentMechanicUser extends MechanicUser with ChangeNotifier {
   Future<bool> getCurrentMechanicData(String mechanicId) async {
     try {
       FirebaseFirestore.instance
-          .collection('mechanics')
+          .collection('mechanic')
           .doc(mechanicId)
           .snapshots()
           .listen((event) {
